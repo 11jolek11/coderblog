@@ -9,7 +9,7 @@ class BlogAuthor(models.Model):
     Class representing author (of comment) entity
     """
     name = models.ForeignKey(User, on_delete=models.CASCADE)
-    bio = models.CharField(max_length=50, min_length=1, help_text="Write about yourself here!")
+    bio = models.CharField(max_length=50, help_text="Write about yourself here!")
     
     def __str__(self) -> str:
         return self.name
@@ -21,9 +21,8 @@ class Blog(models.Model):
     """
     Class representing blog article entity 
     """
-    name = models.CharField(max_length=15, min_length=1)
-    descritption = models.TextField(min_length=1)
-    # TODO: add FK from BlogAuthor
+    name = models.CharField(max_length=15)
+    descritption = models.TextField()
     author = models.ForeignKey(BlogAuthor, on_delete=models.CASCADE)
     post_date = models.DateField(auto_now=True)
     
@@ -37,11 +36,9 @@ class BlogComment(models.Model):
     """
     Class representing comment entity for a blog article
     """
-    description = models.CharField(max_length=50, min_length=1)
+    description = models.CharField(max_length=50)
     post_date = models.DateTimeField(auto_now=True)
-    # TODO: add FK from Users
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    # TODO: add FK from Blog
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     
     def __str__(self) -> str:
