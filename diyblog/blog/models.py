@@ -12,7 +12,7 @@ class BlogAuthor(models.Model):
     bio = models.CharField(max_length=50, help_text="Write about yourself here!")
     
     def __str__(self) -> str:
-        return self.name
+        return self.name.username
 
     def get_absolute_url(self) -> str:
         return reverse()
@@ -27,7 +27,7 @@ class Blog(models.Model):
     post_date = models.DateField(auto_now=True)
     
     def __str__(self) -> str:
-        return f'{self.name} written by {self.author}'
+        return f'{self.name} written by {self.author.name.username}'
 
     def get_absolute_url(self) -> str:
         return reverse()
