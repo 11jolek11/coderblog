@@ -8,8 +8,11 @@ class BlogAuthor(models.Model):
     """
     Class representing author (of comment) entity
     """
-    name = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.CharField(max_length=50, help_text="Write about yourself here!")
+
+    class Meta:
+        ordering = ['name', 'bio']
     
     def __str__(self) -> str:
         return self.name.username
