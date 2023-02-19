@@ -10,6 +10,6 @@ urlpatterns = [
     path('blogs/', views.BlogListView.as_view(), name='blog_list'),
     # path('blog/<int:pk>'),
     # path('blog/<int:pk>/comments'),
-    # path('blogger/'),
+    path('bloggers/', views.BloggersListView.as_view(), name='bloggers_list'),
     # path('blogger/<int:pk>'),
 ]

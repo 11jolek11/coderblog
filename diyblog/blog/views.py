@@ -23,3 +23,11 @@ class BlogListView(generic.ListView):
     model = models.Blog
     context_object_name = 'blog_list'
     paginate_by = 10
+
+class BloggersListView(generic.ListView):
+    """
+    View of all bloggers publishing on the platform
+    """
+    model = models.BlogAuthor
+    template_name = 'blog/bloggers_list.html'
+    context_object_name = 'bloggers_list'
