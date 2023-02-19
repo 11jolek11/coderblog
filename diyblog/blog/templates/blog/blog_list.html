@@ -1,0 +1,14 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<ul>
+    {% for blog in blog_list %}
+    <li>
+        <p>{{ blog.author }}</p>
+        <p>{{ blog.description }}</p>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+
