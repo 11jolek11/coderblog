@@ -17,6 +17,9 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 class BlogListView(generic.ListView):
+    """
+    Blog list view. List of all blogs
+    """
     model = models.Blog
     context_object_name = 'blog_list'
     paginate_by = 10
