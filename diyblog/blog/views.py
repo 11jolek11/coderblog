@@ -22,7 +22,7 @@ class BlogListView(generic.ListView):
     """
     model = models.Blog
     context_object_name = 'blog_list'
-    paginate_by = 10
+    paginate_by = 5
 
 class BlogDetailView(generic.DetailView):
     """

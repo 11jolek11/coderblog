@@ -15,13 +15,11 @@
     <ul class="sidebar-nav">
       <li><a href="{% url 'index' %}">Home</a></li>
       <!-- TODO: Comment -->
-      {% comment %}
-      <li><a href="{% url 'blogs' %}">All blogs</a></li>
-      <li><a href="{% url 'bloggers' %}">All bloggers</a></li>
-      
+      <li><a href="{% url 'blog_list' %}">All blogs</a></li>
+      <li><a href="{% url 'bloggers_list' %}">All bloggers</a></li>
     </ul>
     {% comment %}
-    TODO: Comment
+    <!-- TODO: Comment -->
     <ul class="sidebar-nav">
      {% if user.is_authenticated %}
        <li>User: {{ user.get_username }}</li>
