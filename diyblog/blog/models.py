@@ -3,7 +3,6 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 # Create your models here.
-# TODO: Fill get_absolute_url
 class BlogAuthor(models.Model):
     """
     Class representing author (of comment) entity
@@ -18,7 +17,7 @@ class BlogAuthor(models.Model):
         return self.name.username
 
     def get_absolute_url(self) -> str:
-        return reverse()
+        return reverse('bloger-detail', args=[str(self.id)])
 
 class Blog(models.Model):
     """
@@ -28,12 +27,15 @@ class Blog(models.Model):
     descritption = models.TextField()
     author = models.ForeignKey(BlogAuthor, on_delete=models.CASCADE)
     post_date = models.DateField(auto_now=True)
+
+    class Meta:
+        ordering = ['-post_date']
     
     def __str__(self) -> str:
         return f'{self.name} written by {self.author.name.username}'
 
     def get_absolute_url(self) -> str:
-        return reverse()
+        return reverse('blog-detail', args=[str(self.id)])
 
 class BlogComment(models.Model):
     """
