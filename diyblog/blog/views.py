@@ -40,3 +40,17 @@ class BloggersListView(generic.ListView):
     template_name = 'blog/bloggers_list.html'
     context_object_name = 'bloggers_list'
 
+class BloggersDetailView(generic.DetailView):
+    """
+    View of single blogger with details.
+    """
+    # Blog.objects.all().filter(author_id=1)
+    model = models.BlogAuthor
+    context_object_name = 'author'
+    template_name = 'blog/author_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['authors_blog_list'] = models.Blog.objects.all().filter(author_id=self.kwargs['pk'])
+        context['authors_blog_list'].order_by('-post_date')
+        return context
