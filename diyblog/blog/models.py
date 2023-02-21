@@ -3,19 +3,21 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 # Create your models here.
-# TODO: Fill get_absolute_url
 class BlogAuthor(models.Model):
     """
     Class representing author (of comment) entity
     """
-    name = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.CharField(max_length=50, help_text="Write about yourself here!")
+
+    class Meta:
+        ordering = ['name', 'bio']
     
     def __str__(self) -> str:
-        return self.name
+        return self.name.username
 
     def get_absolute_url(self) -> str:
-        return reverse()
+        return reverse('bloger-detail', args=[str(self.id)])
 
 class Blog(models.Model):
     """
@@ -25,12 +27,15 @@ class Blog(models.Model):
     descritption = models.TextField()
     author = models.ForeignKey(BlogAuthor, on_delete=models.CASCADE)
     post_date = models.DateField(auto_now=True)
+
+    class Meta:
+        ordering = ['-post_date']
     
     def __str__(self) -> str:
-        return f'{self.name} written by {self.author}'
+        return f'{self.name} written by {self.author.name.username}'
 
     def get_absolute_url(self) -> str:
-        return reverse()
+        return reverse('blog-detail', args=[str(self.id)])
 
 class BlogComment(models.Model):
     """
@@ -40,6 +45,9 @@ class BlogComment(models.Model):
     post_date = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['-post_date']
     
     def __str__(self) -> str:
         return f'Comment on {self.blog} by {self.author}'

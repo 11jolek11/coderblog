@@ -1,0 +1,10 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<h1>Blog</h1>
+<p>The blog has the following record counts:</p>
+<ul>
+  <li><strong>Blogs: </strong> {{ count_authors }}</li>
+  <li><strong>Authors: </strong> {{ count_blog }}</li>
+</ul>
+{% endblock %}

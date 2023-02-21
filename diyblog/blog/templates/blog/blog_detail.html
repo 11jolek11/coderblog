@@ -1,0 +1,24 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<h1>{{ blog.name }}</h1>
+<a href="{% url 'bloger-detail' blog.author.id %}">{{ blog.author }}</a>
+<p>{{ blog.post_date }}</p>
+<p>{{ blog.descritption }}</p>
+
+<div>
+    <p>Comments</p>
+    {% for comment in blog.blogcomment_set.all %}
+        <div>
+            <p>{{ comment.author }}</p>
+            <p>{{ comment.post_date }}</p>
+            <p>{{ comment.description }}</p>
+        </div>
+    {% endfor %}
+    {% if user.is_authenticated  %}
+        <p><a href="{% url 'blog-detail-comments' blog.id %}">Add a comment</a></p>
+    {% else %}
+        <p><a href="{% url 'login' %}?next={{request.path}}">Login to add comment</a></p>
+    {% endif %}
+</div>
+{% endblock %}
