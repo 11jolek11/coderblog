@@ -28,7 +28,6 @@ class BlogCommentAdmin(admin.ModelAdmin):
     list_display = ('short_blog_title', 'author', 'post_date')
     empty_value_display = '--NULL--'
 
-    # TODO: test if works
     @admin.display
     def short_blog_title(self, object):
         return object.blog.name[:9] + '...'
