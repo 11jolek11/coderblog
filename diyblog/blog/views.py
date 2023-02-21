@@ -2,6 +2,11 @@ from django.shortcuts import render
 from django.views import generic
 from blog import models
 from typing import Any, Dict
+from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
+
+
 
 # Create your views here.
 def index(request):
@@ -31,6 +36,26 @@ class BlogDetailView(generic.DetailView):
     model = models.Blog
     context_object_name = 'blog'
     template_name = 'blog/blog_detail.html'
+
+class BlogCommentCreate(LoginRequiredMixin, generic.edit.CreateView):
+    """
+    View for creating new comment
+    """
+    model = models.BlogComment
+    fields = ['description',]
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super(BlogCommentCreate, self).get_context_data(**kwargs)
+        context['blog'] = get_object_or_404(models.Blog, pk = self.kwargs['pk'])
+        return context
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.blog = get_object_or_404(models.Blog, pk = self.kwargs['pk'])
+        return super(BlogCommentCreate, self).form_valid(form)
+    
+    def get_success_url(self):
+        return reverse('blog-detail', kwargs={'pk': self.kwargs['pk'],})
 
 class BloggersListView(generic.ListView):
     """

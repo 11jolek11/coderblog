@@ -45,6 +45,9 @@ class BlogComment(models.Model):
     post_date = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['-post_date']
     
     def __str__(self) -> str:
         return f'Comment on {self.blog} by {self.author}'
