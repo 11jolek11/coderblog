@@ -1,13 +1,12 @@
 {% extends 'base_generic.html' %}
-
 {% block content %}
-<ul>
-    {% for blog in blog_list %}
-    <li>
-        <a href="{% url 'blog-detail' blog.id %}">{{ blog.name }}</a>
-        <a href="{% url 'bloger-detail' blog.author.id %}">{{ blog.author }}</a>
-        <p>{{ blog.post_date }}</p>
-    </li>
-    {% endfor %}
-</ul>
+    <ul>
+        {% for blog in blog_list %}
+            <li>
+                <a href="{% url 'blog-detail' blog.id %}">{{ blog.name }}</a>
+                <a href="{% url 'bloger-detail' blog.author.id %}">{{ blog.author }}</a>
+                <p>{{ blog.post_date }}</p>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

@@ -1,12 +1,11 @@
 {% extends 'base_generic.html' %}
-
 {% block content %}
-<ul>
-    {% for bloger in bloggers_list %}
-    <li>
-        <p>{{ bloger.name }}</p>
-        <p>{{ bloger.bio }}</p>
-    </li>
-    {% endfor %}
-</ul>
+    <ul>
+        {% for bloger in bloggers_list %}
+            <li>
+                <p>{{ bloger.name }}</p>
+                <p>{{ bloger.bio }}</p>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
