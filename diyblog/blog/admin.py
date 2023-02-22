@@ -9,9 +9,9 @@ from blog.models import Blog, BlogAuthor, BlogComment
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('short_name', 'author', 'post_date')
+    list_display = ['short_name', 'author', 'post_date']
     date_hierarchy = 'post_date'
-    list_filter = ('author')
+    list_filter = ['author']
     empty_value_display = '--NULL--'
 
     @admin.display
@@ -20,12 +20,12 @@ class BlogAdmin(admin.ModelAdmin):
 
 @admin.register(BlogAuthor)
 class BlogAuthorAdmin(admin.ModelAdmin):
-    list_display = ('name')
+    list_display = ['name']
     empty_value_display = '--NULL--'
 
 @admin.register(BlogComment)
 class BlogCommentAdmin(admin.ModelAdmin):
-    list_display = ('short_blog_title', 'author', 'post_date')
+    list_display = ['short_blog_title', 'author', 'post_date']
     empty_value_display = '--NULL--'
 
     @admin.display

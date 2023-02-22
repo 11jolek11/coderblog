@@ -1,6 +1,8 @@
 from django.db import models
-from django.urls import reverse
 from django.contrib.auth.models import User
+from django.urls import reverse
+
+
 
 # Create your models here.
 class BlogAuthor(models.Model):
@@ -23,7 +25,7 @@ class Blog(models.Model):
     """
     Class representing blog article entity 
     """
-    name = models.CharField(max_length=15)
+    name = models.CharField(max_length=15, verbose_name='title')
     descritption = models.TextField()
     author = models.ForeignKey(BlogAuthor, on_delete=models.CASCADE)
     post_date = models.DateField(auto_now=True)
@@ -50,4 +52,4 @@ class BlogComment(models.Model):
         ordering = ['-post_date']
     
     def __str__(self) -> str:
-        return f'Comment on {self.blog} by {self.author}'
+        return f'Comment on {self.blog.name} by {self.author}'
