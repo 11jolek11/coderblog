@@ -50,6 +50,6 @@ class BlogComment(models.Model):
 
     class Meta:
         ordering = ['-post_date']
-    
+ 
     def __str__(self) -> str:
         return f'Comment on {self.blog.name} by {self.author}'

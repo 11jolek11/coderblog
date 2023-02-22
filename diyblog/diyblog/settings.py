@@ -33,7 +33,7 @@ if os.getenv('STATUS') == 'DEV' or os.getenv('STATUS') == 'TEST':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Redirect URLs
 LOGIN_REDIRECT_URL = '/'
