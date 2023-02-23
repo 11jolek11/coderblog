@@ -32,12 +32,12 @@ class Blog(models.Model):
 
     class Meta:
         ordering = ['-post_date']
-        # permissions = [
-        #     (
-        #         'can_publish',
-        #         'Can publish Blog posts'
-        #     )
-        # ]
+        permissions = [
+            (
+                'can_publish',
+                'Can publish Blog posts'
+            )
+        ]
     
     def __str__(self) -> str:
         return f'{self.name} written by {self.author.name.username}'
@@ -56,12 +56,12 @@ class BlogComment(models.Model):
 
     class Meta:
         ordering = ['-post_date'],
-        # permissions = [
-        #     (
-        #         'can_comment',
-        #         'Can publish a comment'
-        #     )
-        # ]
+        permissions = [
+            (
+                'can_comment',
+                'Can publish a comment'
+            )
+        ]
  
     def __str__(self) -> str:
         return f'Comment on {self.blog.name} by {self.author}'
