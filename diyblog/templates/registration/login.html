@@ -27,4 +27,9 @@
     <p>
         <a href="{% url 'password_reset' %}">Lost password?</a>
     </p>
+    {% if not user.is_authenticated %}
+    <p>
+        <a href="{% url 'signup' %}">Register</a>
+    </p>
+    {% endif %}
 {% endblock %}
