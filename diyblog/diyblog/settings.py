@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'guardian',
+    # 'guardian',
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
 ]
@@ -98,10 +98,10 @@ DATABASES = {
 }
 
 # Auth backends
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'guardian.backends.ObjectPermissionBackend',
-)
+# AUTHENTICATION_BACKENDS = (
+#     'django.contrib.auth.backends.ModelBackend',
+#     'guardian.backends.ObjectPermissionBackend',
+# )
 
 
 # Password validation
