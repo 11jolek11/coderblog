@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Post List</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{%  static style.css %}" rel="stylesheet">
+</head>
+<body>
+<div class="container-xxl my-4">
+    {% if latest_posts_list %}
+        <div class="flex-column"> <!-- class="row" -->
+            {% for latest_post in latest_posts_list %}
+                <div class="col-lg-4 mb-3 w-75">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{% url 'post_detail_by_id' latest_post.id %}" class="text-decoration-none text-dark">
+                                    {{ latest_post.title }}
+                                </a>
+                            </h5>
+                            <p class="card-text text-muted">
+                                By {{ latest_post.user.username }} on {{ latest_post.posted_at }}
+                            </p>
+                            <p class="card-text">{{ latest_post.content|truncatewords:150 }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center">No posts available.</p>
+    {% endif %}
+</div>
+</body>
+</html>

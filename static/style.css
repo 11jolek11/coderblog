@@ -1,0 +1,128 @@
+/* Bootstrap Overrides and Custom Blog Styles */
+
+/* General Body Styles */
+body {
+    font-family: 'Lora', serif; /* A popular serif font for blogs */
+    background-color: #f8f9fa;
+    color: #212529;
+    line-height: 1.7;
+}
+
+/* Container for the main content */
+.container {
+    max-width: 900px;
+}
+
+/* Blog Post List (Index Page) */
+
+/* Card Styles for Blog Posts */
+.card {
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-title a {
+    color: #343a40;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.card-title a:hover {
+    color: #007bff;
+}
+
+.card-text {
+    color: #6c757d;
+}
+
+/* Blog Post Detail Page */
+
+/* Post Title */
+.detail_post_title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #343a40;
+}
+
+/* Post Author and Date */
+.detail_post_author,
+.detail_post_date {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+/* Post Content */
+.detail_post_content {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* Comment Section */
+.comment_section {
+    margin-top: 3rem;
+}
+
+.comment_section h5 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.comment_box {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+}
+
+.comment_box .author_name {
+    font-weight: 600;
+    color: #343a40;
+}
+
+.comment_box .comment {
+    margin-top: 0.5rem;
+    color: #495057;
+}
+
+/* Footer */
+footer {
+    margin-top: 4rem;
+    padding: 2rem 0;
+    background-color: #343a40;
+    color: #ffffff;
+    text-align: center;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #007bff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .detail_post_title {
+        font-size: 2rem;
+    }
+
+    .comment_box {
+        padding: 0.75rem;
+    }
+
+    .comment_box .author_name {
+        font-size: 1rem;
+    }
+
+    .comment_box .comment {
+        font-size: 0.95rem;
+    }
+}
