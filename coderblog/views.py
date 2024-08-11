@@ -8,7 +8,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # Create your views here.
 def index(request):
     latest_posts_list = Post.objects.order_by("-posted_at")[:25]
-    paginator = Paginator(latest_posts_list, 2)
+    paginator = Paginator(latest_posts_list, 12)
     page = request.GET.get('page')
     try:
         latest_posts_list = paginator.page(page)
