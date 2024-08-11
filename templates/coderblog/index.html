@@ -33,6 +33,36 @@
     {% else %}
         <p class="text-center">No posts available.</p>
     {% endif %}
+    
+    {% if latest_posts_list.has_previous %}
+      <a href="?page={{ latest_posts_list.previous_page_number }}">« Previous page</a>
+    
+      {% if latest_posts_list.number > 3 %}
+        <a href="?page=1">1</a>
+        {% if latest_posts_list.number > 4 %}
+          <span>...</span>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+    
+    {% for num in latest_posts_list.paginator.page_range %}
+      {% if latest_posts_list.number == num %}
+        <a href="?page={{ num }}">{{ num }}</a>
+      {% elif num > latest_posts_list.number|add:'-3' and num < latest_posts_list.number|add:'3' %}
+        <a href="?page={{ num }}">{{ num }}</a>
+      {% endif %}
+    {% endfor %}
+    
+    {% if latest_posts_list.has_next %}
+      {% if latest_posts_list.number < latest_posts_list.paginator.num_pages|add:'-3' %}
+        <span>...</span>
+        <a href="?page={{ latest_posts_list.paginator.num_pages }}">{{ latest_posts_list.paginator.num_pages }}</a>
+      {% elif latest_posts_list.number < latest_posts_list.paginator.num_pages|add:'-2' %}
+        <a href="?page={{ latest_posts_list.paginator.num_pages }}">{{ latest_posts_list.paginator.num_pages }}</a>
+      {% endif %}
+    
+      <a href="?page={{ latest_posts_list.next_page_number }}">Next Page »</a>
+    {% endif %}
 </div>
 </body>
 </html>

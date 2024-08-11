@@ -2,11 +2,20 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post, Comment
 from django.http import HttpResponseRedirect
 from .forms import CommentForm
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 # Create your views here.
 def index(request):
     latest_posts_list = Post.objects.order_by("-posted_at")[:25]
+    paginator = Paginator(latest_posts_list, 2)
+    page = request.GET.get('page')
+    try:
+        latest_posts_list = paginator.page(page)
+    except PageNotAnInteger:
+        latest_posts_list = paginator.page(1)
+    except EmptyPage:
+        latest_posts_list = paginator.page(paginator.num_pages)
     context = {"latest_posts_list": latest_posts_list}
     return render(request, "coderblog/index.html", context)
 
